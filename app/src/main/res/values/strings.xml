@@ -14,4 +14,8 @@
     <string name="title_activity_testes">Testes</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="email">Email</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="have_an_account_sign_in_here">Have an account? Sign in here</string>
+    <string name="password">Password</string>
 </resources>
