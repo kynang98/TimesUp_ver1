@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "528558785212",
+    "firebase_url": "https://times-up-2019.firebaseio.com",
+    "project_id": "times-up-2019",
+    "storage_bucket": "times-up-2019.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528558785212:android:80700c8261fbb5359146b9",
+        "android_client_info": {
+          "package_name": "com.tgl.timesupver1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "528558785212-slmuuca292tqfah4e7k5kasijgsobgjd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpihq-64sB83cRjSmy78OQlCB39NNzWLc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "528558785212-slmuuca292tqfah4e7k5kasijgsobgjd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
