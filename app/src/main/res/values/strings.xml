@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TimesUp ver1</string>
+    <string name="app_name">Time\'s Up</string>
     <string name="desc">Image</string>
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">Email</string>
@@ -10,7 +10,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-
+    <string name="title_activity_invigilator_home"> Home </string>
     <string name="title_activity_testes">Testes</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
