@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="98dp"
-        android:layout_marginTop="318dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="98dp"
         android:layout_marginBottom="368dp"
         android:ems="10"
@@ -23,7 +23,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.923" />
 
     <EditText
         android:id="@+id/login_pw"
@@ -52,8 +52,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_pw"
-        app:layout_constraintVertical_bias="0.555" />
+        app:layout_constraintTop_toBottomOf="@+id/login_signup"
+        app:layout_constraintVertical_bias="0.192" />
 
     <Button
         android:id="@+id/login_signup"
@@ -62,12 +62,9 @@
         android:layout_marginStart="157dp"
         android:layout_marginTop="33dp"
         android:layout_marginEnd="166dp"
-        android:layout_marginBottom="96dp"
         android:text="@string/sign_up"
-        app:layout_constraintBottom_toTopOf="@+id/login_signin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_pw"
-        app:layout_constraintVertical_bias="0.119" />
+        app:layout_constraintTop_toBottomOf="@+id/login_pw" />
 </androidx.constraintlayout.widget.ConstraintLayout>
