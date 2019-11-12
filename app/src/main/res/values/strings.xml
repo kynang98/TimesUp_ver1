@@ -18,4 +18,6 @@
     <string name="sign_up">Sign Up</string>
     <string name="have_an_account_sign_in_here">Have an account? Sign in here</string>
     <string name="password">Password</string>
+    <string name="title_activity_invigilator__setup__exam">Invigilator_Setup_Exam</string>
+    <string name="title_activity_invigilator__view__result">Invigilator_View_Result</string>
 </resources>

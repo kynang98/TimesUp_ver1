@@ -9,6 +9,21 @@
         android:roundIcon="@mipmap/timesuplogo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Candidate_Home"></activity>
+        <activity android:name=".Exam_Lobby" />
+        <activity android:name=".Invigilator_Upload_Question" />
+        <activity
+            android:name=".Invigilator_View_Result"
+            android:label="View Result"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Invigilator_Setup_Exam"
+            android:label="Setup Exam"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Invigilator_Home"
+            android:label="@string/title_activity_invigilator_home"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
