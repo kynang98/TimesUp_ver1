@@ -8,7 +8,7 @@
     android:background="@drawable/loginbg">
 
     <EditText
-        android:id="@+id/login_email"
+        android:id="@+id/signup_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="98dp"
@@ -26,7 +26,7 @@
         app:layout_constraintVertical_bias="0.923" />
 
     <EditText
-        android:id="@+id/login_pw"
+        android:id="@+id/signup_pw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="98dp"
@@ -38,10 +38,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_email" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_email" />
 
     <TextView
-        android:id="@+id/login_signin"
+        android:id="@+id/signup_signin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="175dp"
@@ -52,11 +52,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_signup"
+        app:layout_constraintTop_toBottomOf="@+id/signup_signup"
         app:layout_constraintVertical_bias="0.192" />
 
     <Button
-        android:id="@+id/login_signup"
+        android:id="@+id/signup_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="157dp"
@@ -66,5 +66,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_pw" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_pw" />
 </androidx.constraintlayout.widget.ConstraintLayout>
