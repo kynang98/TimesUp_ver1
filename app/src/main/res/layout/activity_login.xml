@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:background="@drawable/invigiloginbackground">
+    android:background="@drawable/invililoginbackground">
 
     <EditText
         android:id="@+id/login_email"
@@ -64,7 +64,7 @@
         android:layout_marginStart="180dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="90dp"
-        android:background="@drawable/InviGo"
+        android:background="@drawable/invigo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
