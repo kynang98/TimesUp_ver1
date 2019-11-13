@@ -14,7 +14,7 @@
     <string name="title_activity_testes">Testes</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="email">Email</string>
+    <string name="email" translatable="false">Email</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Sign In</string>
     <string name="have_an_account_sign_in_here">Have an account? Sign in here</string>
@@ -25,4 +25,6 @@
     <string name="logout">Logout</string>
     <string name="login_as_invigilator">Login as Invigilator</string>
     <string name="login_as_student">Login as Student</string>
+    <string name="class_student_monitoring">Class/Student Monitoring</string>
+    <string name="view_results">View Results</string>
 </resources>
