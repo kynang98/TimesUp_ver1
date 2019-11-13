@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:background="@drawable/LoginBackground">
+    android:background="@drawable/InviLoginBackground">
 
     <EditText
         android:id="@+id/login_email"
@@ -47,13 +47,14 @@
         android:layout_marginStart="175dp"
         android:layout_marginEnd="177dp"
         android:layout_marginBottom="90dp"
-        android:text="@string/dont_have_an_account_sign_up_here"
+        android:text="@string/login_as_student"
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_signin"
-        app:layout_constraintVertical_bias="0.161" />
+        app:layout_constraintVertical_bias="0.19" />
 
     <Button
         android:id="@+id/login_signin"
@@ -63,7 +64,7 @@
         android:layout_marginStart="180dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="90dp"
-        android:background="@drawable/go"
+        android:background="@drawable/InviGo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

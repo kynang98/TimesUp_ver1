@@ -23,4 +23,6 @@
     <string name="title_activity_invigilator__setup__exam">Invigilator_Setup_Exam</string>
     <string name="title_activity_invigilator__view__result">Invigilator_View_Result</string>
     <string name="logout">Logout</string>
+    <string name="login_as_invigilator">Login as Invigilator</string>
+    <string name="login_as_student">Login as Student</string>
 </resources>
