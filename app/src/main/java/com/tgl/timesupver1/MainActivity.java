@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         emailID = findViewById(R.id.signup_email);
         password = findViewById(R.id.signup_pw);
-        btnSignUp = (Button) findViewById(R.id.signup_signup);
-        tvSignIn = (TextView) findViewById(R.id.signup_signin);
+        btnSignUp = findViewById(R.id.signup_signup);
+        tvSignIn = findViewById(R.id.signup_signin);
         btnSignUp.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Fields are empty!", Toast.LENGTH_SHORT).show();
                 }
                 else if(!(email.isEmpty()) && !(pwd.isEmpty())){
+                    mFirebaseAuth.signInWithEmailAndPassword(email, pwd);
                     mFirebaseAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         tvSignIn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                Toast.makeText(MainActivity.this, "Clicked on button.", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(i);
             }

@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/timesuplogo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Candidate_Home"></activity>
+        <activity android:name=".Candidate_Home" />
         <activity android:name=".Exam_Lobby" />
         <activity android:name=".Invigilator_Upload_Question" />
         <activity
@@ -26,11 +26,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LoginActivity"
-            android:label="Login"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".HomeActivity"
-            android:label="temp login"
+            android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
