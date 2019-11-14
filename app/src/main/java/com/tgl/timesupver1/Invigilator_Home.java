@@ -22,7 +22,7 @@ public class Invigilator_Home extends AppCompatActivity {
         setContentView(R.layout.activity_invigilator_home);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 
-        Button btn_uploadQuestion = findViewById(R.id.btn_upload_question);
+       /* Button btn_uploadQuestion = findViewById(R.id.btn_upload_question);
         btn_uploadQuestion.setText("Upload Question");
         btn_uploadQuestion.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -57,7 +57,7 @@ public class Invigilator_Home extends AppCompatActivity {
                 openNextActivity(new MainActivity());
             }
         });
-
+*/
     }
     public void openNextActivity(Activity page){
 
