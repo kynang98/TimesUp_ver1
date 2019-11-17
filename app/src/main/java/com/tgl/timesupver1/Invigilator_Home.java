@@ -22,6 +22,17 @@ public class Invigilator_Home extends AppCompatActivity {
         setContentView(R.layout.activity_invigilator_home);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 
+        FloatingActionButton setupFloatActBtn;
+        setupFloatActBtn = findViewById(R.id.setupFloatActBtn);
+
+        setupFloatActBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intoSetupExam = new Intent(Invigilator_Home.this, Invigilator_Setup_Exam.class);
+                startActivity(intoSetupExam);
+            }
+        });
+
        /* Button btn_uploadQuestion = findViewById(R.id.btn_upload_question);
         btn_uploadQuestion.setText("Upload Question");
         btn_uploadQuestion.setOnClickListener(new View.OnClickListener(){
@@ -57,6 +68,8 @@ public class Invigilator_Home extends AppCompatActivity {
                 openNextActivity(new MainActivity());
             }
         });
+
+
 */
     }
     public void openNextActivity(Activity page){

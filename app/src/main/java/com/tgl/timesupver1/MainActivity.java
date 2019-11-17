@@ -21,6 +21,7 @@ import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
     Button btnSignUp;
     TextView tvSignIn;
     FirebaseAuth mFirebaseAuth;
-
-    private final static String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +41,33 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.signup_pw);
         btnSignUp = findViewById(R.id.signup_signup);
         tvSignIn = findViewById(R.id.signup_signin);
+
+        String clientId = MqttClient.generateClientId();
+        MqttAndroidClient client =
+                new MqttAndroidClient(MainActivity.this, "tcp://broker.hivemq.com:1883",
+                        clientId);
+
+        try {
+            MqttConnectOptions options = new MqttConnectOptions();
+            options.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1);
+            IMqttToken token = client.connect(options);
+            token.setActionCallback(new IMqttActionListener() {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken) {
+                    // We are connected
+                    Toast.makeText(MainActivity.this, "MQTT success", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                    // Something went wrong e.g. connection timeout or firewall problems
+                    Toast.makeText(MainActivity.this, "MQTT failed", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+
         btnSignUp.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -87,29 +113,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-        String clientId = MqttClient.generateClientId();
-        MqttAndroidClient client =
-                new MqttAndroidClient(MainActivity.this, "tcp://broker.hivemq.com:1883",
-                        clientId);
-
-        try {
-            IMqttToken token = client.connect();
-            token.setActionCallback(new IMqttActionListener() {
-                @Override
-                public void onSuccess(IMqttToken asyncActionToken) {
-                    // We are connected
-                    Toast.makeText(MainActivity.this, "MQTT success", Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    // Something went wrong e.g. connection timeout or firewall problems
-                    Toast.makeText(MainActivity.this, "MQTT failed", Toast.LENGTH_SHORT).show();
-                }
-            });
-        } catch (MqttException e) {
-            e.printStackTrace();
-        }
     }
 }

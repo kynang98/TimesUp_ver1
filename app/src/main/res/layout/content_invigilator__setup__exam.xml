@@ -8,4 +8,13 @@
     tools:context=".Invigilator_Setup_Exam"
     tools:showIn="@layout/activity_invigilator__setup__exam">
 
+    <Button
+        android:id="@+id/sendcodeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/MQTT_Data"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

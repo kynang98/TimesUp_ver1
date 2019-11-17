@@ -27,6 +27,7 @@
     <string name="login_as_student">Login as Student</string>
     <string name="class_student_monitoring">Class/Student Monitoring</string>
     <string name="view_results">View Results</string>
+    <string name="MQTT_Data">Send Code</string>
 
     <!-- Menu items -->
     <string name="menu_connect">Connect</string>
