@@ -17,13 +17,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import org.eclipse.paho.android.service.MqttAndroidClient;
-import org.eclipse.paho.client.mqttv3.IMqttActionListener;
-import org.eclipse.paho.client.mqttv3.IMqttToken;
-import org.eclipse.paho.client.mqttv3.MqttClient;
-import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
-import org.eclipse.paho.client.mqttv3.MqttException;
-
 public class MainActivity extends AppCompatActivity {
 
     EditText emailID, password;
@@ -42,31 +35,6 @@ public class MainActivity extends AppCompatActivity {
         btnSignUp = findViewById(R.id.signup_signup);
         tvSignIn = findViewById(R.id.signup_signin);
 
-        String clientId = MqttClient.generateClientId();
-        MqttAndroidClient client =
-                new MqttAndroidClient(MainActivity.this, "tcp://broker.hivemq.com:1883",
-                        clientId);
-
-        try {
-            MqttConnectOptions options = new MqttConnectOptions();
-            options.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1);
-            IMqttToken token = client.connect(options);
-            token.setActionCallback(new IMqttActionListener() {
-                @Override
-                public void onSuccess(IMqttToken asyncActionToken) {
-                    // We are connected
-                    Toast.makeText(MainActivity.this, "MQTT success", Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    // Something went wrong e.g. connection timeout or firewall problems
-                    Toast.makeText(MainActivity.this, "MQTT failed", Toast.LENGTH_SHORT).show();
-                }
-            });
-        } catch (MqttException e) {
-            e.printStackTrace();
-        }
 
         btnSignUp.setOnClickListener(new View.OnClickListener(){
             @Override
