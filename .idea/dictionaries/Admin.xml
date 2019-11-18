@@ -4,7 +4,9 @@
       <w>firebase</w>
       <w>hivemq</w>
       <w>mqtt</w>
+      <w>rssi</w>
       <w>sendcode</w>
+      <w>timesuplogo</w>
     </words>
   </dictionary>
 </component>

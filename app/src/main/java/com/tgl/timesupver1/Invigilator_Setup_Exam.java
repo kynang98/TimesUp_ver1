@@ -1,11 +1,13 @@
 package com.tgl.timesupver1;
 
 //import android.content.Intent;
+
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -23,7 +25,6 @@ public class Invigilator_Setup_Exam extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invigilator__setup__exam);
-        //Intent intent = getIntent();
 
         Button sendcodeBtn = findViewById(R.id.sendcodeBtn);
         String clientId = MqttClient.generateClientId();

@@ -2,10 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tgl.timesupver1">
 
-    <uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,10 +18,14 @@
         android:allowBackup="true"
         android:icon="@mipmap/timesuplogo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/timesuplogo_round"
         android:largeHeap="true"
+        android:roundIcon="@mipmap/timesuplogo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".BleScanActivity"></activity>
+        <activity
+            android:name=".BleHomeActivity"
+            android:theme="@android:style/Theme.Holo.Light"></activity>
         <activity android:name=".Candidate_Home" />
         <activity android:name=".Exam_Lobby" />
         <activity android:name=".Invigilator_Upload_Question" />
@@ -41,11 +48,12 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name="org.eclipse.paho.android.service.MqttService" >
-        </service>
+
+        <service android:name="org.eclipse.paho.android.service.MqttService" />
     </application>
 
 </manifest>

@@ -72,10 +72,16 @@ public class Invigilator_Home extends AppCompatActivity {
 
 */
     }
+
     public void openNextActivity(Activity page){
 
         Intent redirect = new Intent(this, page.getClass());
         startActivity(redirect);
+    }
+
+    public void onBackPressed(){
+        Intent goBack = new Intent(Invigilator_Home.this, MainActivity.class);
+        startActivity(goBack);
     }
 
 }
