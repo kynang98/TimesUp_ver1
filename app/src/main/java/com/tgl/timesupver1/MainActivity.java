@@ -27,6 +27,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     EditText emailID, password;
     Button btnSignUp;
     TextView tvSignIn;
-    FirebaseAuth mFirebaseAuth;
+    private DatabaseReference firebase = FirebaseDatabase.getInstance().getReference().child("Users");
     Button bleBtn;
 
     int PERMISSION_REQUEST_CODE = 1;
@@ -52,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
         emailID = findViewById(R.id.signup_email);
         password = findViewById(R.id.signup_pw);
         btnSignUp = findViewById(R.id.signup_signup);
@@ -97,22 +97,9 @@ public class MainActivity extends AppCompatActivity {
                     password.setError("Please enter password");
                     password.requestFocus();
                 }
-                else if(email.isEmpty() && pwd.isEmpty()){
-                    Toast.makeText(MainActivity.this, "Fields are empty!", Toast.LENGTH_SHORT).show();
-                }
                 else if(!(email.isEmpty()) && !(pwd.isEmpty())){
-                    mFirebaseAuth.signInWithEmailAndPassword(email, pwd);
-                    mFirebaseAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(!task.isSuccessful()){
-                                Toast.makeText(MainActivity.this, "Sign Up unsuccessful! Please try again.", Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                                startActivity(new Intent(MainActivity.this, Invigilator_Home.class));
-                            }
-                        }
-                    });
+                    Intent i = new Intent(MainActivity.this, Candidate_Home.class);
+                    startActivity(i);
                 }
                 else{
                     Toast.makeText(MainActivity.this, "Unexpected error occurred, please restart your application.", Toast.LENGTH_SHORT).show();
