@@ -5,17 +5,23 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class Invigilator_Home extends AppCompatActivity {
-
+    StorageReference sRef;
+    ImageView img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +39,12 @@ public class Invigilator_Home extends AppCompatActivity {
             }
         });
 
+        sRef = FirebaseStorage.getInstance().getReference("profileImages/Testing.jpg");
+        img = findViewById(R.id.imageView);
+        GlideApp.with(this)
+                .load(sRef)
+                .circleCrop()
+                .into(img);
        /* Button btn_uploadQuestion = findViewById(R.id.btn_upload_question);
         btn_uploadQuestion.setText("Upload Question");
         btn_uploadQuestion.setOnClickListener(new View.OnClickListener(){

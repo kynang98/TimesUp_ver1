@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "528558785212-38roskfr4nqa3q8ipbru73dtj3eua020.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tgl.timesupver1",
+            "certificate_hash": "a4a61e4ef76b251416bdac83441caa34b3c11bdc"
+          }
+        },
+        {
           "client_id": "528558785212-mju7cj24s1hima698b8j9jlsebqk750t.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

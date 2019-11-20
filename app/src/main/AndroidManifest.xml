@@ -22,10 +22,11 @@
         android:roundIcon="@mipmap/timesuplogo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BleScanActivity"></activity>
+        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".BleScanActivity" />
         <activity
             android:name=".BleHomeActivity"
-            android:theme="@android:style/Theme.Holo.Light"></activity>
+            android:theme="@android:style/Theme.Holo.Light" />
         <activity android:name=".Candidate_Home" />
         <activity android:name=".Exam_Lobby" />
         <activity android:name=".Invigilator_Upload_Question" />
@@ -43,8 +44,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"
+            android:label="Login"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Answer_Session" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

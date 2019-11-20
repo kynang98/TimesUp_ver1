@@ -25,6 +25,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -135,6 +137,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(gotoBLE);
             }
         });
+
+        //Intent intent = new Intent(MainActivity.this, EditProfile.class);
+        //startActivity(intent);
     }
 
     @Override
@@ -174,4 +179,5 @@ public class MainActivity extends AppCompatActivity {
                 });
         alertDialog.show();
     }
+
 }
