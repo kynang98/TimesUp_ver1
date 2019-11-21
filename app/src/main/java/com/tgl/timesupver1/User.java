@@ -1,27 +1,15 @@
 package com.tgl.timesupver1;
 
-import android.media.Image;
-import android.widget.ImageView;
-import com.bumptech.glide.Glide;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private StorageReference sRef;
     private String Name;
     private String Email;
     private String Password;
     private String School;
     private String FirebaseID;
-    Image profileImage;
 
-    User(){
-        sRef = FirebaseStorage.getInstance().getReference("profileImages");
-    }
-
-    public void getProfileImage(ImageView img){
-
+    public User() {
     }
 
     public User(String name, String email, String password, String school) {
