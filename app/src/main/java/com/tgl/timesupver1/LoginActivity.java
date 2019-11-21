@@ -17,6 +17,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnSignIn;
     TextView tvSignUp;
     FirebaseAuth mFirebaseAuth;
-
+    private DatabaseReference firebase;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     @Override
@@ -56,8 +61,8 @@ public class LoginActivity extends AppCompatActivity {
         {
             @Override
             public void onClick(View v){
-                String email = emailID.getText().toString();
-                String pwd = password.getText().toString();
+                final String email = emailID.getText().toString();
+                final String pwd = password.getText().toString();
                 if(email.isEmpty()){
                     emailID.setError("Please enter Email");
                     emailID.requestFocus();
@@ -77,8 +82,53 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Login unsuccessful. Please try again.", Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                Intent intToHome = new Intent(LoginActivity.this, Invigilator_Home.class);
-                                startActivity(intToHome);
+                                firebase = FirebaseDatabase.getInstance().getReference("Users/Invigilator");
+                                firebase.orderByChild("email").equalTo(email).addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        if(dataSnapshot.exists()) {
+                                            for(DataSnapshot data: dataSnapshot.getChildren()) {
+                                                User user = data.getValue(User.class);
+                                                String ID = data.getKey();
+                                                user.setFirebaseID(ID);
+                                                String pass = data.child("password").getValue(String.class);
+                                                if (pass.isEmpty()) {
+                                                    Toast.makeText(LoginActivity.this, "Unable to read", Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    if (pass.equals(pwd)) {
+                                                        Intent i = new Intent(LoginActivity.this, Candidate_Home.class);
+                                                        i.putExtra("object", user);
+                                                        startActivity(i);
+                                                    } else {
+                                                        Toast.makeText(LoginActivity.this, "Wrong password, please try again.", Toast.LENGTH_SHORT).show();
+                                                        password.setText("");
+                                                    }
+                                                }
+                                            }
+                                        }else{
+                                            Toast.makeText(LoginActivity.this, "No such record, creating new account", Toast.LENGTH_SHORT).show();
+                                            String ID = firebase.push().getKey();
+                                            User user = new User("DEFAULT", email, pwd, "Asia Pacific University");
+                                            user.setFirebaseID(ID);
+                                            firebase.child(ID).setValue(user);
+                                            mFirebaseAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                                    if(!task.isSuccessful()){
+                                                        Toast.makeText(LoginActivity.this, "Sign Up unsuccessful! Please try again.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                            Intent i = new Intent(LoginActivity.this, Candidate_Home.class);
+                                            i.putExtra("object", user);
+                                            startActivity(i);
+                                        }
+                                    }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
                             }
                         }
                     });

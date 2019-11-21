@@ -2,12 +2,12 @@ package com.tgl.timesupver1;
 
 import android.media.Image;
 import android.widget.ImageView;
-
 import com.bumptech.glide.Glide;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import java.io.Serializable;
 
-public class User {
+public class User implements Serializable {
     private StorageReference sRef;
     private String Name;
     private String Email;

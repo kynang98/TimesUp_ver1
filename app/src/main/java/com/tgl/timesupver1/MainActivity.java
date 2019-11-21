@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
                                     } else {
                                         if (pass.equals(pwd)) {
                                             Intent i = new Intent(MainActivity.this, Candidate_Home.class);
+                                            i.putExtra("object", user);
                                             startActivity(i);
                                         } else {
                                             Toast.makeText(MainActivity.this, "Wrong password, please try again.", Toast.LENGTH_SHORT).show();
@@ -131,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
                                 user.setFirebaseID(ID);
                                 firebase.child(ID).setValue(user);
                                 Intent i = new Intent(MainActivity.this, Candidate_Home.class);
+                                i.putExtra("object", user);
                                 startActivity(i);
                             }
                         }
