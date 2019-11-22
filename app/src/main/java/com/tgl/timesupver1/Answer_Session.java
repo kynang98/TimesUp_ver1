@@ -2,6 +2,7 @@ package com.tgl.timesupver1;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -36,8 +37,6 @@ public class Answer_Session extends AppCompatActivity {
     Button btn_submit;
     String current_no;
     LinkedList<String> answer_sheet;
-    int checked;
-    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,7 +141,7 @@ public class Answer_Session extends AppCompatActivity {
                     }
 
                     current_no = String.valueOf(Integer.parseInt(current_no) + 1);
-                    Intent redirect = new Intent(Answer_Session.this, Answer_Session.class);
+                    Intent redirect1 = new Intent(Answer_Session.this, Answer_Session.class);
                     String[] ans_list = new String[selected_ans.size()];
                     for (int i = 0; i < ans_list.length; i++) {
                         ans_list[i] = selected_ans.get(i).toString();
@@ -151,10 +150,10 @@ public class Answer_Session extends AppCompatActivity {
                     for (int i = 0; i < ans_sheet.length; i++) {
                         ans_sheet[i] = answer_sheet.get(i);
                     }
-                    redirect.putExtra("question_no", current_no);
-                    redirect.putExtra("answer_list", ans_list);
-                    redirect.putExtra("answer_sheet", ans_sheet);
-                    startActivity(redirect);
+                    redirect1.putExtra("question_no", current_no);
+                    redirect1.putExtra("answer_list", ans_list);
+                    redirect1.putExtra("answer_sheet", ans_sheet);
+                    startActivity(redirect1);
                 }else{
                     Toast.makeText(Answer_Session.this, "This is the last question.", Toast.LENGTH_LONG).show();
                 }
@@ -165,7 +164,6 @@ public class Answer_Session extends AppCompatActivity {
         // prev button
         btn_prev = findViewById(R.id.btn_prev);
         if(current_no != "1") {
-            btn_prev.setVisibility(View.VISIBLE);
             btn_prev.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -198,7 +196,7 @@ public class Answer_Session extends AppCompatActivity {
                             }
                         }
                         current_no = String.valueOf(Integer.parseInt(current_no) - 1);
-                        Intent redirect = new Intent(Answer_Session.this, Answer_Session.class);
+                        Intent redirect2 = new Intent(Answer_Session.this, Answer_Session.class);
                         String[] ans_list = new String[selected_ans.size()];
                         for( int i = 0; i < ans_list.length; i++){
                             ans_list[i] = selected_ans.get(i).toString();
@@ -207,10 +205,10 @@ public class Answer_Session extends AppCompatActivity {
                         for( int i = 0; i < ans_sheet.length; i++){
                             ans_sheet[i] = answer_sheet.get(i);
                         }
-                        redirect.putExtra("question_no", current_no);
-                        redirect.putExtra("answer_list", ans_list);
-                        redirect.putExtra("answer_sheet", ans_sheet);
-                        startActivity(redirect);
+                        redirect2.putExtra("question_no", current_no);
+                        redirect2.putExtra("answer_list", ans_list);
+                        redirect2.putExtra("answer_sheet", ans_sheet);
+                        startActivity(redirect2);
                     }else{
                         Toast.makeText(Answer_Session.this, "This is the first question.", Toast.LENGTH_LONG).show();
                     }
@@ -218,34 +216,32 @@ public class Answer_Session extends AppCompatActivity {
             });
         }
 
-
         // submit button
         btn_submit = findViewById(R.id.btn_submit);
         btn_submit.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                if(selected_ans.size() <= Integer.parseInt(current_no)){
-                    if(selected_ans.get(Integer.parseInt(current_no) - 1) == -1){
-                        if(rad.getCheckedRadioButtonId() == option1.getId()){
-                            answer_sheet.add(option1.getText().toString());
-                        }else if(rad.getCheckedRadioButtonId() == option2.getId()){
-                            answer_sheet.add(option2.getText().toString());
-                        }else if(rad.getCheckedRadioButtonId() == option3.getId()){
-                            answer_sheet.add(option3.getText().toString());
-                        }else if(rad.getCheckedRadioButtonId() == option4.getId()){
-                            answer_sheet.add(option4.getText().toString());
-                        }else{
-                            answer_sheet.add("");
-                        }
+            public void onClick(View view){
+                if (selected_ans.size() < Integer.parseInt(current_no)) {
+                    selected_ans.add(rad.getCheckedRadioButtonId());
+                    if (rad.getCheckedRadioButtonId() == option1.getId()) {
+                        answer_sheet.add(option1.getText().toString());
+                    } else if (rad.getCheckedRadioButtonId() == option2.getId()) {
+                        answer_sheet.add(option2.getText().toString());
+                    } else if (rad.getCheckedRadioButtonId() == option3.getId()) {
+                        answer_sheet.add(option3.getText().toString());
+                    } else if (rad.getCheckedRadioButtonId() == option4.getId()) {
+                        answer_sheet.add(option4.getText().toString());
+                    } else {
+                        answer_sheet.add("");
                     }
                 }
-                String[] ans_sheet = new String[selected_ans.size()];
-                for( int i = 0; i < ans_sheet.length; i++){
-                    ans_sheet[i] = answer_sheet.get(i);
-                }
-                Intent intent = new Intent(Answer_Session.this, Success_Page.class);
-                //intent.putExtra("answer_sheet", ans_sheet);
-                startActivity(intent);
+                    String[] ans_sheet = new String[selected_ans.size()];
+                    for( int i = 0; i < ans_sheet.length; i++){
+                        ans_sheet[i] = answer_sheet.get(i);
+                    }
+                Intent redirect3 = new Intent(Answer_Session.this, LoginActivity.class);
+                    redirect3.putExtra("answer_sheet", ans_sheet);
+                startActivity(redirect3);
 
             }
         });
