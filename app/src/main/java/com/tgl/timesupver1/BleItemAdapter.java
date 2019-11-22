@@ -1,18 +1,19 @@
 package com.tgl.timesupver1;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class BleItemAdapter extends BaseAdapter {
-    ArrayList<BluetoothDevice> mLeDevices;
-    LayoutInflater mInflater;
-
+    private ArrayList<BluetoothDevice> mLeDevices;
+    private LayoutInflater mInflater;
 
     void addDevice(BluetoothDevice device) {
         if(!mLeDevices.contains(device)) {
@@ -28,7 +29,7 @@ public class BleItemAdapter extends BaseAdapter {
         mLeDevices.clear();
     }
 
-    public BleItemAdapter(Context c){
+    BleItemAdapter(Context c){
         super();
         mLeDevices = new ArrayList<>();
         mInflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -49,18 +50,19 @@ public class BleItemAdapter extends BaseAdapter {
         return i;
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getView(int i, View view, ViewGroup parent) {
-        BleScanActivity.ViewHolder viewHolder;
+        BleItemAdapter.ViewHolder viewHolder;
         // General ListView optimization code.
         if (view == null) {
             view = mInflater.inflate(R.layout.ble_list, null);
-            viewHolder = new BleScanActivity.ViewHolder();
+            viewHolder = new BleItemAdapter.ViewHolder();
             viewHolder.deviceAddress = view.findViewById(R.id.device_address);
             viewHolder.deviceName = view.findViewById(R.id.device_name);
             view.setTag(viewHolder);
         } else {
-            viewHolder = (BleScanActivity.ViewHolder) view.getTag();
+            viewHolder = (BleItemAdapter.ViewHolder) view.getTag();
         }
 
         BluetoothDevice device = mLeDevices.get(i);
@@ -72,5 +74,10 @@ public class BleItemAdapter extends BaseAdapter {
         viewHolder.deviceAddress.setText(device.getAddress());
 
         return view;
+    }
+
+    static class ViewHolder {
+        TextView deviceName;
+        TextView deviceAddress;
     }
 }

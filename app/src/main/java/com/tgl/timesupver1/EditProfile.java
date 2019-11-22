@@ -24,15 +24,18 @@ public class EditProfile extends AppCompatActivity {
 
     Button btn_setImage;
     Button btn_uploadImage;
+    Button DoneBtn;
     ImageView img;
     StorageReference sRef;
     public Uri imgUri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
         btn_setImage = findViewById(R.id.btn_setImage);
         btn_uploadImage = findViewById(R.id.btn_upload);
+        DoneBtn = findViewById(R.id.DoneBtn);
         img = findViewById(R.id.img_profile);
         sRef = FirebaseStorage.getInstance().getReference("profileImages");
         btn_setImage.setOnClickListener(new View.OnClickListener(){
@@ -46,6 +49,14 @@ public class EditProfile extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 uploadImage();
+            }
+        });
+
+        DoneBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goBack = new Intent(EditProfile.this, Invigilator_Home.class);
+                startActivity(goBack);
             }
         });
     }
