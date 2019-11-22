@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/timesuplogo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Candidate_Connect_Hall"></activity>
+        <activity android:name=".Success"></activity>
+        <activity android:name=".Candidate_Connect_Hall" />
         <activity android:name=".EditProfile" />
         <activity android:name=".BleScanActivity" />
         <activity android:name=".BleDeviceControlActivity" />

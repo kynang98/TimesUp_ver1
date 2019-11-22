@@ -81,5 +81,7 @@
     <string name="ble_scan_scanning_status">Scan status</string>
     <string name="edit_profile_done">Done</string>
     <string name="title_activity_ble_gatt">Connected Device</string>
+    <string name="success">Success!</string>
+    <string name="success_words">Yay! Your answers have been successful submitted, you may leave the hall.</string>
 
 </resources>
