@@ -20,6 +20,8 @@ public class Invigilator_Home extends AppCompatActivity {
 
     StorageReference sRef;
     ImageView img;
+    User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +30,7 @@ public class Invigilator_Home extends AppCompatActivity {
 
         Intent i = getIntent();
         Bundle b = i.getExtras();
-        User user = (User) b.getSerializable("object");
+        user = (User) b.getSerializable("object");
 
         FloatingActionButton setupFloatActBtn;
         setupFloatActBtn = findViewById(R.id.setupFloatActBtn);
@@ -37,6 +39,7 @@ public class Invigilator_Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intoSetupExam = new Intent(Invigilator_Home.this, Invigilator_Setup_Exam.class);
+                intoSetupExam.putExtra("object", user);
                 startActivity(intoSetupExam);
             }
         });
@@ -52,6 +55,7 @@ public class Invigilator_Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent gotoEdit = new Intent(Invigilator_Home.this, EditProfile.class);
+                gotoEdit.putExtra("object", user);
                 startActivity(gotoEdit);
             }
         });
@@ -100,6 +104,7 @@ public class Invigilator_Home extends AppCompatActivity {
     public void openNextActivity(Activity page){
 
         Intent redirect = new Intent(this, page.getClass());
+        redirect.putExtra("object", user);
         startActivity(redirect);
     }
 
