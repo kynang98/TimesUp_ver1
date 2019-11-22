@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Invigilator_View_Result"
-    tools:showIn="@layout/activity_invigilator__view__result">
+    tools:showIn="@layout/activity_invigilator__view__result"
+    android:background="@drawable/inviresultsbackground">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
