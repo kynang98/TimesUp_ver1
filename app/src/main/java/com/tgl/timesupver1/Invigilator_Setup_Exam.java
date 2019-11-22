@@ -57,7 +57,7 @@ public class Invigilator_Setup_Exam extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String topic = "TimesUp/examCode";
-                String payload = "123456";
+                String payload = "Form 1 Geografi";
                 byte[] encodedPayload;
                 try {
                     encodedPayload = payload.getBytes(StandardCharsets.UTF_8);

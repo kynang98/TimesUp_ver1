@@ -34,14 +34,14 @@ public class Candidate_Home extends AppCompatActivity {
         btn_connectExam.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                openNextActivity(null); // Open Connect Exam Page
+                openNextActivity(new Candidate_Connect_Hall());
             }
         });
     }
 
     public void openNextActivity(Activity page){
 
-        Intent i = new Intent(this, page.getClass());
+        Intent i = new Intent(Candidate_Home.this, page.getClass());
         i.putExtra("object", user);
         startActivity(i);
     }
