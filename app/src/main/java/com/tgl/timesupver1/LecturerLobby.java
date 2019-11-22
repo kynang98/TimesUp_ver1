@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
@@ -21,19 +22,45 @@ public class LecturerLobby extends AppCompatActivity {
     String ExamName;
     String duration;
     Button startTest;
+    private TextView title;
+    private TextView starttime;
+    private TextView examduration;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lecturer_lobby);
         startTest = findViewById(R.id.button10);
+        title = findViewById(R.id.textView16);
+        starttime = findViewById(R.id.textView19);
+        examduration = findViewById(R.id.textView24);
 
 
-        Intent i = new Intent();
+        Intent i = getIntent();
         time = i.getIntExtra("time",time);
         ExamCode = i.getStringExtra("code");
         ExamName = i.getStringExtra("title");
         duration = i.getStringExtra("duration");
+
+        title.setText(ExamName);
+        String am_pm;
+        String newTime = Integer.toString(time);
+        String hour = newTime.substring(0, newTime.length() - 2);
+        String mins = newTime.substring(1);
+        if(time>1159&&time<1300){
+            am_pm="PM";
+        }else if(time>1299){
+            am_pm="PM";
+            int temp = Integer.parseInt(hour);
+            temp = temp-12;
+            hour = Integer.toString(temp);
+        }else{
+            am_pm = "AM";
+        }
+        starttime.setText(hour+":"+mins+am_pm);
+        examduration.setText(duration);
+
 
         startTest.setOnClickListener(new View.OnClickListener() {
             @Override

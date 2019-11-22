@@ -46,7 +46,6 @@ public class Exam_Lobby extends AppCompatActivity {
         }else{
             am_pm = "AM";
         }
-
         starttime.setText(hour+":"+mins+am_pm);
         examduration.setText(duration);
     }
