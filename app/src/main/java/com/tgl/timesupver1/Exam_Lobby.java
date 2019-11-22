@@ -175,6 +175,9 @@ public class Exam_Lobby extends AppCompatActivity {
                 i.putExtra("title", ExamName);
                 i.putExtra("duration", duration);
                 i.putExtra("object", user);
+                i.putExtra("question_no","1");
+                String[] answer = null;
+                i.putExtra("answer_list",answer);
                 startActivity(i);
             }
         });
