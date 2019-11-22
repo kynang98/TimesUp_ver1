@@ -70,7 +70,7 @@ public class Exam_Lobby extends AppCompatActivity {
         String am_pm;
         String newTime = Integer.toString(time);
         String hour = newTime.substring(0,newTime.length()-2);
-        String mins = newTime.substring(1);
+        String mins = newTime.substring(newTime.length()-2);
         if(time>1159&&time<1300){
             am_pm="PM";
         }else if(time>1299){

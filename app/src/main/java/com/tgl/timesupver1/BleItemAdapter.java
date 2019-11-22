@@ -21,7 +21,7 @@ public class BleItemAdapter extends BaseAdapter {
         }
     }
 
-    BluetoothDevice getDevice(int position) {
+    public BluetoothDevice getDevice(int position) {
         return mLeDevices.get(position);
     }
 
