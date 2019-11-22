@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnSignUp;
     TextView tvSignIn;
     private DatabaseReference firebase;
+    Button bleBtn;
 
     int PERMISSION_REQUEST_CODE = 1;
     String TAG = MainActivity.class.getSimpleName();
@@ -160,6 +161,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        Intent intent = new Intent(MainActivity.this, Answer_Session.class);
+        intent.putExtra("question_no", "1");
+        String[] answers = null;
+        intent.putExtra("answer_list", answers);
+        startActivity(intent);
     }
 
     @Override
