@@ -20,7 +20,6 @@ import com.google.firebase.database.ValueEventListener;
 public class Answer_Session extends AppCompatActivity {
     private FirebaseDatabase mDatabase;
     private DatabaseReference mRef;
-    QuestionPaper qp = new QuestionPaper();
     TextView question;
     RadioButton option1;
     RadioButton option2;
