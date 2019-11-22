@@ -11,7 +11,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_invigilator_home"> Home </string>
-    <string name="title_activity_testes">Testes</string>
+    <string name="title_activity_testes">Test</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="email" translatable="false">Email</string>
