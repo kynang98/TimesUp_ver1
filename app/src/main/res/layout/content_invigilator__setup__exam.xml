@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Invigilator_Setup_Exam"
-    tools:showIn="@layout/activity_invigilator__setup__exam"
-    android:background="@drawable/setupbackground">
+    tools:showIn="@layout/activity_invigilator__setup__exam">
 
     <Button
         android:id="@+id/button6"
@@ -55,7 +54,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.877" />
+        app:layout_constraintVertical_bias="0.813" />
 
     <Spinner
         android:id="@+id/spinner4"
@@ -98,7 +97,7 @@
         android:ems="10"
         android:hint="Enter A Test Title"
         android:inputType="textPersonName"
-        android:textSize="10sp"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/spinner4"
         app:layout_constraintTop_toBottomOf="@+id/spinner4" />
 
@@ -112,26 +111,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
+    <Spinner
+        android:id="@+id/spinner3"
+        android:layout_width="177dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/datePicker1" />
+
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="112dp"
         android:text="@string/exam_duration"
+        app:layout_constraintEnd_toStartOf="@+id/spinner3"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="177dp"
-        android:layout_height="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.688"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePicker1"
-        app:layout_constraintVertical_bias="0.115" />
 
     <TextView
         android:id="@+id/textView4"

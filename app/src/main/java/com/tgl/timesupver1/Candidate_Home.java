@@ -34,7 +34,7 @@ public class Candidate_Home extends AppCompatActivity {
         btn_connectExam.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                openNextActivity(new Candidate_Connect_Hall());
+                openNextActivity(new BleScanActivity());
             }
         });
     }

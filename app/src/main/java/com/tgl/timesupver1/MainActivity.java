@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.signup_pw);
         btnSignUp = findViewById(R.id.signup_signup);
         tvSignIn = findViewById(R.id.signup_signin);
-        bleBtn = findViewById(R.id.bleBtn);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
@@ -161,13 +160,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        bleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent gotoBLE = new Intent(MainActivity.this, BleScanActivity.class);
-                startActivity(gotoBLE);
-            }
-        });
 
         //Intent intent = new Intent(MainActivity.this, EditProfile.class);
         //startActivity(intent);
