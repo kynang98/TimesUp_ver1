@@ -83,5 +83,7 @@
     <string name="title_activity_ble_gatt">Connected Device</string>
     <string name="success">Success!</string>
     <string name="success_words">Yay! Your answers have been successful submitted, you may leave the hall.</string>
+    <string name="timesup">Times Up!</string>
+    <string name="timesup_words">Awww... time’s up! No worries your answers have been submitted :)</string>
 
 </resources>
