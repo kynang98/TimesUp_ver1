@@ -224,7 +224,7 @@ public class Answer_Session extends AppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if(selected_ans.size() == Integer.parseInt(current_no)){
+                if(selected_ans.size() <= Integer.parseInt(current_no)){
                     if(selected_ans.get(Integer.parseInt(current_no) - 1) == -1){
                         if(rad.getCheckedRadioButtonId() == option1.getId()){
                             answer_sheet.add(option1.getText().toString());
@@ -239,10 +239,13 @@ public class Answer_Session extends AppCompatActivity {
                         }
                     }
                 }
-
-//                Intent intent = new Intent(Answer_Session.this, Success_Page.class);
-
-//                startActivity(intent);
+                String[] ans_sheet = new String[selected_ans.size()];
+                for( int i = 0; i < ans_sheet.length; i++){
+                    ans_sheet[i] = answer_sheet.get(i);
+                }
+                Intent intent = new Intent(Answer_Session.this, Success_Page.class);
+                //intent.putExtra("answer_sheet", ans_sheet);
+                startActivity(intent);
 
             }
         });
