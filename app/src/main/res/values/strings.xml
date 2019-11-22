@@ -48,4 +48,10 @@
     <string name="label_device_address">Address:</string>
     <string name="label_state">State:</string>
     <string name="label_data">Data:</string>
+    <string name="set_your_test">Setup Your Test</string>
+    <string name="exam_code">Test Code:</string>
+    <string name="exam_title">Test Title:</string>
+    <string name="exam_duration">Duration:</string>
+    <string name="exam_starttime">Start Time:</string>
+    <string name="submit">Submit</string>
 </resources>
