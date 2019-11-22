@@ -240,9 +240,9 @@ public class Answer_Session extends AppCompatActivity {
                     }
                 }
 
-                Intent intent = new Intent(Answer_Session.this, Success_Page.class);
+//                Intent intent = new Intent(Answer_Session.this, Success_Page.class);
 
-                startActivity(intent);
+//                startActivity(intent);
 
             }
         });
