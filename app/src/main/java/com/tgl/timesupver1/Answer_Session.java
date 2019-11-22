@@ -4,10 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -21,7 +19,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Answer_Session extends AppCompatActivity {
@@ -38,7 +35,6 @@ public class Answer_Session extends AppCompatActivity {
     Button btn_prev;
     Button btn_submit;
     String current_no;
-    User user;
     LinkedList<String> answer_sheet;
     int checked;
     @SuppressLint("ResourceType")
@@ -77,10 +73,7 @@ public class Answer_Session extends AppCompatActivity {
             }
         }
 
-        Bundle b = intent.getExtras();
-        user = (User) b.getSerializable("object");
-
-        mRef = mDatabase.getReference("Questions/Form 3 Geografi/"+current_no);
+        mRef = mDatabase.getReference("Questions/Form 3 Mathematics/"+current_no);
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -90,15 +83,15 @@ public class Answer_Session extends AppCompatActivity {
                         if(i == 0){
                             current_no = d.getValue().toString();
                         }else if (i == 1){
-                            question.setText(d.getValue().toString());
-                        }else if( i == 2){
                             option1.setText(d.getValue().toString());
-                        }else if( i == 3){
+                        }else if( i == 2){
                             option2.setText(d.getValue().toString());
-                        }else if( i == 4){
+                        }else if( i == 3){
                             option3.setText(d.getValue().toString());
-                        }else if( i == 5){
+                        }else if( i == 4){
                             option4.setText(d.getValue().toString());
+                        }else if( i == 6){
+                            question.setText(d.getValue().toString());
                         }else{
 
                         }
@@ -118,49 +111,53 @@ public class Answer_Session extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                if(selected_ans.size() < Integer.parseInt(current_no)){
-                    selected_ans.add(rad.getCheckedRadioButtonId());
-                    if(rad.getCheckedRadioButtonId() == option1.getId()){
-                        answer_sheet.add(option1.getText().toString());
-                    }else if(rad.getCheckedRadioButtonId() == option2.getId()){
-                        answer_sheet.add(option2.getText().toString());
-                    }else if(rad.getCheckedRadioButtonId() == option3.getId()){
-                        answer_sheet.add(option3.getText().toString());
-                    }else if(rad.getCheckedRadioButtonId() == option4.getId()){
-                        answer_sheet.add(option4.getText().toString());
-                    }else{
-                        answer_sheet.add("");
-                    }
-                }else if(selected_ans.size() >= Integer.parseInt(current_no)){
-                    selected_ans.set(Integer.parseInt(current_no)-1, rad.getCheckedRadioButtonId());
-                    if(rad.getCheckedRadioButtonId() == option1.getId()){
-                        answer_sheet.set(Integer.parseInt(current_no)-1, option1.getText().toString());
-                    }else if(rad.getCheckedRadioButtonId() == option2.getId()){
-                        answer_sheet.set(Integer.parseInt(current_no)-1, option2.getText().toString());
-                    }else if(rad.getCheckedRadioButtonId() == option3.getId()){
-                        answer_sheet.set(Integer.parseInt(current_no)-1, option3.getText().toString());
-                    }else if(rad.getCheckedRadioButtonId() == option4.getId()){
-                        answer_sheet.set(Integer.parseInt(current_no)-1, option4.getText().toString());
-                    }else{
-                        answer_sheet.set(Integer.parseInt(current_no)-1,"");
+                if(Integer.parseInt(current_no) != 8) {
+                    if (selected_ans.size() < Integer.parseInt(current_no)) {
+                        selected_ans.add(rad.getCheckedRadioButtonId());
+                        if (rad.getCheckedRadioButtonId() == option1.getId()) {
+                            answer_sheet.add(option1.getText().toString());
+                        } else if (rad.getCheckedRadioButtonId() == option2.getId()) {
+                            answer_sheet.add(option2.getText().toString());
+                        } else if (rad.getCheckedRadioButtonId() == option3.getId()) {
+                            answer_sheet.add(option3.getText().toString());
+                        } else if (rad.getCheckedRadioButtonId() == option4.getId()) {
+                            answer_sheet.add(option4.getText().toString());
+                        } else {
+                            answer_sheet.add("");
+                        }
+                    } else if (selected_ans.size() >= Integer.parseInt(current_no)) {
+                        selected_ans.set(Integer.parseInt(current_no) - 1, rad.getCheckedRadioButtonId());
+                        if (rad.getCheckedRadioButtonId() == option1.getId()) {
+                            answer_sheet.set(Integer.parseInt(current_no) - 1, option1.getText().toString());
+                        } else if (rad.getCheckedRadioButtonId() == option2.getId()) {
+                            answer_sheet.set(Integer.parseInt(current_no) - 1, option2.getText().toString());
+                        } else if (rad.getCheckedRadioButtonId() == option3.getId()) {
+                            answer_sheet.set(Integer.parseInt(current_no) - 1, option3.getText().toString());
+                        } else if (rad.getCheckedRadioButtonId() == option4.getId()) {
+                            answer_sheet.set(Integer.parseInt(current_no) - 1, option4.getText().toString());
+                        } else {
+                            answer_sheet.set(Integer.parseInt(current_no) - 1, "");
+                        }
+
                     }
 
+                    current_no = String.valueOf(Integer.parseInt(current_no) + 1);
+                    Intent redirect = new Intent(Answer_Session.this, Answer_Session.class);
+                    String[] ans_list = new String[selected_ans.size()];
+                    for (int i = 0; i < ans_list.length; i++) {
+                        ans_list[i] = selected_ans.get(i).toString();
+                    }
+                    String[] ans_sheet = new String[selected_ans.size()];
+                    for (int i = 0; i < ans_sheet.length; i++) {
+                        ans_sheet[i] = answer_sheet.get(i);
+                    }
+                    redirect.putExtra("question_no", current_no);
+                    redirect.putExtra("answer_list", ans_list);
+                    redirect.putExtra("answer_sheet", ans_sheet);
+                    startActivity(redirect);
+                }else{
+                    Toast.makeText(Answer_Session.this, "This is the last question.", Toast.LENGTH_LONG).show();
                 }
-
-                current_no = String.valueOf(Integer.parseInt(current_no)+1);
-                Intent redirect = new Intent(Answer_Session.this, Answer_Session.class);
-                String[] ans_list = new String[selected_ans.size()];
-                for( int i = 0; i < ans_list.length; i++){
-                    ans_list[i] = selected_ans.get(i).toString();
-                }
-                String[] ans_sheet = new String[selected_ans.size()];
-                for( int i = 0; i < ans_sheet.length; i++){
-                    ans_sheet[i] = answer_sheet.get(i);
-                }
-                redirect.putExtra("question_no", current_no);
-                redirect.putExtra("answer_list", ans_list);
-                redirect.putExtra("answer_sheet", ans_sheet);
-                startActivity(redirect);
             }
         });
 
@@ -223,11 +220,31 @@ public class Answer_Session extends AppCompatActivity {
 
 
         // submit button
-    }
-    public void openNextActivity(Activity page){
+        btn_submit = findViewById(R.id.btn_submit);
+        btn_submit.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if(selected_ans.size() == Integer.parseInt(current_no)){
+                    if(selected_ans.get(Integer.parseInt(current_no) - 1) == -1){
+                        if(rad.getCheckedRadioButtonId() == option1.getId()){
+                            answer_sheet.add(option1.getText().toString());
+                        }else if(rad.getCheckedRadioButtonId() == option2.getId()){
+                            answer_sheet.add(option2.getText().toString());
+                        }else if(rad.getCheckedRadioButtonId() == option3.getId()){
+                            answer_sheet.add(option3.getText().toString());
+                        }else if(rad.getCheckedRadioButtonId() == option4.getId()){
+                            answer_sheet.add(option4.getText().toString());
+                        }else{
+                            answer_sheet.add("");
+                        }
+                    }
+                }
 
-        Intent i = new Intent(Answer_Session.this, page.getClass());
-        i.putExtra("object", user);
-        startActivity(i);
+                Intent intent = new Intent(Answer_Session.this, Success_Page.class);
+
+                startActivity(intent);
+
+            }
+        });
     }
 }
