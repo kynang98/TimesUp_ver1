@@ -32,9 +32,12 @@ public class BleScanActivity extends AppCompatActivity {
     Button BleScanBtn;
     TextView ScanStatusTextView;
     Handler mHandler;
+    User user;
 
     private final static int REQUEST_ENABLE_BT = 1;
     private static int SCAN_PERIOD = 5000;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,10 @@ public class BleScanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ble_scan);
         Toolbar toolbar = findViewById(R.id.BleDeviceName2);
         setSupportActionBar(toolbar);
+
+        Intent i = getIntent();
+        Bundle b = i.getExtras();
+        user = (User) b.getSerializable("object");
 
         mBluetoothManager = (BluetoothManager)getSystemService(Context.BLUETOOTH_SERVICE);
         mBluetoothAdapter = mBluetoothManager.getAdapter();

@@ -15,6 +15,9 @@ import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+import java.nio.charset.StandardCharsets;
 
 public class LecturerLobby extends AppCompatActivity {
     int time;
@@ -61,31 +64,42 @@ public class LecturerLobby extends AppCompatActivity {
         starttime.setText(hour+":"+mins+am_pm);
         examduration.setText(duration);
 
+        String clientId = MqttClient.generateClientId();
+        final MqttAndroidClient client =
+                new MqttAndroidClient(LecturerLobby.this, "tcp://broker.hivemq.com:1883",
+                        clientId);
+
+        try {
+            MqttConnectOptions options = new MqttConnectOptions();
+            options.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1);
+            IMqttToken token = client.connect(options);
+            token.setActionCallback(new IMqttActionListener() {
+                @Override
+                public void onSuccess(IMqttToken asyncActionToken) {
+                    // We are connected
+                    //Toast.makeText(Invigilator_Setup_Exam.this, "MQTT success", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                    Toast.makeText(LecturerLobby.this, "Please connect to internet and try again.", Toast.LENGTH_LONG).show();
+                }
+            });
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
 
         startTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String clientId = MqttClient.generateClientId();
-                final MqttAndroidClient client =
-                        new MqttAndroidClient(LecturerLobby.this, "tcp://broker.hivemq.com:1883",
-                                clientId);
 
+                String payload = "1";
+                String topic = "TimesUp/examStart";
+                byte[] encodedPayload;
                 try {
-                    MqttConnectOptions options = new MqttConnectOptions();
-                    options.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1);
-                    IMqttToken token = client.connect(options);
-                    token.setActionCallback(new IMqttActionListener() {
-                        @Override
-                        public void onSuccess(IMqttToken asyncActionToken) {
-                            // We are connected
-                            //Toast.makeText(Invigilator_Setup_Exam.this, "MQTT success", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                            Toast.makeText(LecturerLobby.this, "Please connect to internet and try again.", Toast.LENGTH_LONG).show();
-                        }
-                    });
+                    encodedPayload = payload.getBytes(StandardCharsets.UTF_8);
+                    MqttMessage message = new MqttMessage(encodedPayload);
+                    client.publish(topic, message);
                 } catch (MqttException e) {
                     e.printStackTrace();
                 }

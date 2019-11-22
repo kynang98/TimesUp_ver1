@@ -3,6 +3,7 @@ package com.tgl.timesupver1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +30,7 @@ public class Answer_Session extends AppCompatActivity {
     Button btn_prev;
     Button btn_submit;
     String current_no;
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,9 @@ public class Answer_Session extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance();
         Intent intent = getIntent();
         current_no = intent.getStringExtra("question_no");
+        Bundle b = intent.getExtras();
+        user = (User) b.getSerializable("object");
+
         mRef = mDatabase.getReference("Questions/Form 3 Geografi/"+current_no);
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -108,5 +113,11 @@ public class Answer_Session extends AppCompatActivity {
 
 
         // submit button
+    }
+    public void openNextActivity(Activity page){
+
+        Intent i = new Intent(Answer_Session.this, page.getClass());
+        i.putExtra("object", user);
+        startActivity(i);
     }
 }

@@ -53,6 +53,7 @@ public class Invigilator_Setup_Exam extends AppCompatActivity {
     String duration;
     String ExamCode;
     String ExamName;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,10 @@ public class Invigilator_Setup_Exam extends AppCompatActivity {
         durationspinner = findViewById(R.id.spinner3);
         submit = findViewById(R.id.button4);
         examtitle = findViewById(R.id.editText3);
+
+        Intent i = getIntent();
+        Bundle b = i.getExtras();
+        user = (User) b.getSerializable("object");
 
         String clientId = MqttClient.generateClientId();
         final MqttAndroidClient client =
@@ -170,12 +175,15 @@ public class Invigilator_Setup_Exam extends AppCompatActivity {
                 i.putExtra("code", ExamCode);
                 i.putExtra("title", ExamName);
                 i.putExtra("duration", duration);
+                i.putExtra("object", user);
+
 
                 Intent j = new Intent(Invigilator_Setup_Exam.this, LecturerLobby.class);
                 j.putExtra("time", time);
                 j.putExtra("code", ExamCode);
                 j.putExtra("title", ExamName);
                 j.putExtra("duration", duration);
+                j.putExtra("object", user);
                 startActivity(j);
             }
         });
