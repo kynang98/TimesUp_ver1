@@ -45,8 +45,8 @@ public class BleDeviceControlActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ble_gatt);
 
         final Intent intent = getIntent();
-        String mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
-        mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
+        String mDeviceName = intent.getExtras().getString(EXTRAS_DEVICE_NAME);
+        mDeviceAddress = intent.getExtras().getString(EXTRAS_DEVICE_ADDRESS);
         TextView bleDeviceName = findViewById(R.id.BleDeviceName);
         bleDeviceName.setText(mDeviceName);
 
