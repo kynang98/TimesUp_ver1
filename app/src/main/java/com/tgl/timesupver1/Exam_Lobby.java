@@ -122,7 +122,7 @@ public class Exam_Lobby extends AppCompatActivity {
             subToken.setActionCallback(new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
-                    // The message was published
+                    Toast.makeText(Exam_Lobby.this, "MQTT SUCCESS", Toast.LENGTH_LONG).show();
                 }
 
                 @Override
