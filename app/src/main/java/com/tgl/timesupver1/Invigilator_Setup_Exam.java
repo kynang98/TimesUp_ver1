@@ -31,8 +31,6 @@ public class Invigilator_Setup_Exam extends AppCompatActivity {
         setContentView(R.layout.activity_invigilator__setup__exam);
 
         Resources res = getResources();
-        final TextView StatusTextView = findViewById(R.id.StatusTextView);
-        ExamListView = findViewById(R.id.ExamListView);
         examCode = res.getStringArray(R.array.examCode);
         examName = res.getStringArray(R.array.examName);
 
@@ -53,14 +51,12 @@ public class Invigilator_Setup_Exam extends AppCompatActivity {
                 public void onSuccess(IMqttToken asyncActionToken) {
                     // We are connected
                     //Toast.makeText(Invigilator_Setup_Exam.this, "MQTT success", Toast.LENGTH_SHORT).show();
-                    StatusTextView.setText("Connected");
                 }
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
                     // Something went wrong e.g. connection timeout or firewall problems
                     //Toast.makeText(Invigilator_Setup_Exam.this, "MQTT failed", Toast.LENGTH_SHORT).show();
-                    StatusTextView.setText("Disconnected");
                 }
             });
         } catch (MqttException e) {

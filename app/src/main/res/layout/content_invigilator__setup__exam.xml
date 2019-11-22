@@ -127,8 +127,12 @@
         android:id="@+id/spinner4"
         android:layout_width="177dp"
         android:layout_height="24dp"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="291dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.717"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.411" />
 
     <TextView
         android:id="@+id/textView9"
