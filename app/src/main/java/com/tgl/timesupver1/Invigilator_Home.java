@@ -5,15 +5,11 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
-import com.bumptech.glide.Glide;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +24,7 @@ public class Invigilator_Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invigilator_home);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 
         Intent i = getIntent();
         Bundle b = i.getExtras();
@@ -46,11 +42,21 @@ public class Invigilator_Home extends AppCompatActivity {
         });
 
         sRef = FirebaseStorage.getInstance().getReference("profileImages/Testing.jpg");
-        img = findViewById(R.id.imageView);
+        img = findViewById(R.id.ProfileImageView);
         GlideApp.with(this)
                 .load(sRef)
                 .circleCrop()
                 .into(img);
+
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gotoEdit = new Intent(Invigilator_Home.this, EditProfile.class);
+                startActivity(gotoEdit);
+            }
+        });
+
+
        /* Button btn_uploadQuestion = findViewById(R.id.btn_upload_question);
         btn_uploadQuestion.setText("Upload Question");
         btn_uploadQuestion.setOnClickListener(new View.OnClickListener(){

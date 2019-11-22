@@ -29,11 +29,29 @@
     <string name="view_results">View Results</string>
     <string name="MQTT_Data">Send Code</string>
 
+    <!-- Exam list -->
+    <string-array name="examCode">
+        <item>EC01A00</item>
+        <item>EC02A00</item>
+        <item>EC03A00</item>
+        <item>EC04A00</item>
+        <item>EC05A00</item>
+    </string-array>
+
+    <string-array name="examName">
+        <item>Please</item>
+        <item>help</item>
+        <item>me</item>
+        <item>HELP</item>
+    </string-array>
+
     <!-- Menu items -->
     <string name="menu_connect">Connect</string>
     <string name="menu_disconnect">Disconnect</string>
     <string name="menu_scan">Scan</string>
     <string name="menu_stop">Stop</string>
+    <string name="menu_main_setting">Setting</string>
+    <string name="menu_main_refresh" />
 
     <!-- BLE -->
     <string name="unknown_device">Unknown device</string>
@@ -48,4 +66,14 @@
     <string name="label_device_address">Address:</string>
     <string name="label_state">State:</string>
     <string name="label_data">Data:</string>
+    <string name="title_activity_ble_home">BLE Devices</string>
+    <string name="title_activity_ble_scan">BLE Devices</string>
+    <string name="ble_scan_scan">Scan</string>
+    <string name="invigilator_setup_exam_status">MQTT status:</string>
+    <string name="exam_list_name">Exam name</string>
+    <string name="exam_list_code">Exam code</string>
+    <string name="ble_scan_scanning_status">Scan status</string>
+    <string name="edit_profile_done">Done</string>
+    <string name="title_activity_ble_gatt">Connected Device</string>
+
 </resources>
