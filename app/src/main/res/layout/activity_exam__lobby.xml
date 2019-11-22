@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Exam_Lobby"
-    android:background="@drawable/studentexambackground">
+    android:background="@drawable/examhallbackground">
 
     <Button
         android:id="@+id/button5"
@@ -65,18 +65,6 @@
         app:layout_constraintVertical_bias="0.309" />
 
     <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/exam_starttime"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.222"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="252dp" />
-
-    <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,4 +73,27 @@
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/textView16"
         tools:layout_editor_absoluteY="287dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="409dp"
+        android:layout_height="423dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="307dp" >
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/exam_starttime"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="78dp"
+        tools:layout_editor_absoluteY="255dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
