@@ -1,10 +1,12 @@
 package com.tgl.timesupver1;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -36,6 +38,8 @@ public class Answer_Session extends AppCompatActivity {
     Button btn_prev;
     Button btn_submit;
     String current_no;
+    String question_title;
+    User user;
     LinkedList<String> answer_sheet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,9 @@ public class Answer_Session extends AppCompatActivity {
         selected_ans = new LinkedList<>();
         answer_sheet = new LinkedList<>();
         current_no = intent.getStringExtra("question_no");
+        question_title = intent.getStringExtra("code");
+        Bundle b = intent.getExtras();
+        user = (User) b.getSerializable("object");
         if(intent.getStringArrayExtra("answer_list") != null){
             String[] ans_list = intent.getStringArrayExtra("answer_list");
             String[] ans_sheet = intent.getStringArrayExtra("answer_sheet");
@@ -72,7 +79,7 @@ public class Answer_Session extends AppCompatActivity {
             }
         }
 
-        mRef = mDatabase.getReference("Questions/Form 3 Mathematics/"+current_no);
+        mRef = mDatabase.getReference("Questions/"+question_title+"/"+current_no);
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -153,6 +160,8 @@ public class Answer_Session extends AppCompatActivity {
                     redirect1.putExtra("question_no", current_no);
                     redirect1.putExtra("answer_list", ans_list);
                     redirect1.putExtra("answer_sheet", ans_sheet);
+                    redirect1.putExtra("code", question_title);
+                    redirect1.putExtra("object", user);
                     startActivity(redirect1);
                 }else{
                     Toast.makeText(Answer_Session.this, "This is the last question.", Toast.LENGTH_LONG).show();
@@ -208,6 +217,8 @@ public class Answer_Session extends AppCompatActivity {
                         redirect2.putExtra("question_no", current_no);
                         redirect2.putExtra("answer_list", ans_list);
                         redirect2.putExtra("answer_sheet", ans_sheet);
+                        redirect2.putExtra("object", user);
+                        redirect2.putExtra("code", question_title);
                         startActivity(redirect2);
                     }else{
                         Toast.makeText(Answer_Session.this, "This is the first question.", Toast.LENGTH_LONG).show();
@@ -239,11 +250,34 @@ public class Answer_Session extends AppCompatActivity {
                     for( int i = 0; i < ans_sheet.length; i++){
                         ans_sheet[i] = answer_sheet.get(i);
                     }
-                Intent redirect3 = new Intent(Answer_Session.this, LoginActivity.class);
+                Intent redirect3 = new Intent(Answer_Session.this, Candidate_Home.class);
                     redirect3.putExtra("answer_sheet", ans_sheet);
+                    redirect3.putExtra("object", user);
+                    redirect3.putExtra("code", question_title);
                 startActivity(redirect3);
 
             }
         });
+    }
+
+    public void onBackPressed(){
+        AlertDialog alertDialog = new AlertDialog.Builder(Answer_Session.this).create();
+        alertDialog.setTitle("Closing");
+        alertDialog.setMessage("Are you sure!?");
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        //finish();
+                        ActivityCompat.finishAffinity(Answer_Session.this);
+                        System.exit(0);
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 }

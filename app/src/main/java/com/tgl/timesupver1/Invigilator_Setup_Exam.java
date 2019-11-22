@@ -41,6 +41,7 @@ public class Invigilator_Setup_Exam extends AppCompatActivity {
     private TimePicker timespinner;
     private Spinner durationspinner;
     private DatabaseReference firebase;
+    private DatabaseReference db_hall;
     private Button submit;
     private EditText examtitle;
     int time;
@@ -49,11 +50,13 @@ public class Invigilator_Setup_Exam extends AppCompatActivity {
     String ExamName;
     User user;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invigilator__setup__exam);
         firebase = FirebaseDatabase.getInstance().getReference("Questions");
+        db_hall = FirebaseDatabase.getInstance().getReference("Hall");
         codespinner = findViewById(R.id.spinner4);
         timespinner = findViewById(R.id.datePicker1);
         timespinner.setIs24HourView(false);
@@ -163,6 +166,12 @@ public class Invigilator_Setup_Exam extends AppCompatActivity {
                 } catch (MqttException e) {
                     e.printStackTrace();
                 }
+
+                db_hall.child("Time's Up").child("ExamCode").setValue(ExamCode);
+                db_hall.child("Time's Up").child("ExamName").setValue(ExamName);
+                db_hall.child("Time's Up").child("duration").setValue(duration);
+                db_hall.child("Time's Up").child("time").setValue(time);
+
 
                 Intent i = new Intent(Invigilator_Setup_Exam.this, Exam_Lobby.class);
                 i.putExtra("time", time);

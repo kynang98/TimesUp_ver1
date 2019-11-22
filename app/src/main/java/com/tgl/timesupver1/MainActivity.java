@@ -160,12 +160,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        Intent intent = new Intent(MainActivity.this, Answer_Session.class);
-        intent.putExtra("question_no", "1");
-        String[] answers = null;
-        intent.putExtra("answer_list", answers);
-        startActivity(intent);
     }
 
     @Override

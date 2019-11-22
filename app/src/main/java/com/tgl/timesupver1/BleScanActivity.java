@@ -124,27 +124,14 @@ public class BleScanActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 device = mBleItemAdapter.getDevice(i);
                 if (device == null) return;
-//                final Intent intent = new Intent(BleScanActivity.this, BleDeviceControlActivity.class);
+                Intent intent = new Intent(BleScanActivity.this, Exam_Lobby.class);
+                intent.putExtra("object",user);
 //                intent.putExtra(BleDeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
 //                intent.putExtra(BleDeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
-//                startActivity(intent);
+                startActivity(intent);
                 mBluetoothAdapter.stopLeScan(mLeScanCallback);
                 ScanStatusTextView.setText("Scan done");
                 EXAMCODE = "Form 3 Geografi";
-
-                mBluetoothLeService.connect(device.getAddress());
-                mBluetoothGattCharacteristic =
-                        mBluetoothGatt.getService(UUID_EXAM_CODE_SERV)
-                                .getCharacteristic(UUID_EXAM_CODE_CHAR);
-
-                final byte[] data = mBluetoothGattCharacteristic.getValue();
-                if (data != null && data.length > 0) {
-                    final StringBuilder stringBuilder = new StringBuilder(data.length);
-                    for (byte byteChar : data)
-                        stringBuilder.append(String.format("%02X ", byteChar));
-                    d("pong2", new String(data));
-                }
-
 //                Intent gattServiceIntent = new Intent(BleScanActivity.this, BluetoothLeService.class);
 //                bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
                 d("pong", "it pass");
