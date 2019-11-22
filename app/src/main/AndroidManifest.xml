@@ -22,7 +22,11 @@
         android:roundIcon="@mipmap/timesuplogo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LecturerLobby"></activity>
+        <activity android:name=".student_resultsMain"></activity>
+        <activity android:name=".invigilator_resultsMain" />
+        <activity android:name=".Student_viewResults" />
+        <activity android:name=".Invigilator_viewResult" />
+        <activity android:name=".LecturerLobby" />
         <activity android:name=".Error" />
         <activity android:name=".TimesUp" />
         <activity android:name=".Success" />
