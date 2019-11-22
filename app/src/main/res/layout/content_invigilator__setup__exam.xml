@@ -11,6 +11,7 @@
 
     <Button
         android:id="@+id/button6"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="44dp"
         android:layout_height="21dp"
         android:layout_marginStart="28dp"
@@ -42,50 +43,6 @@
 
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/invigilator_setup_exam_status"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/StatusTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="175dp"
-        android:text="@string/set_your_test"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/disconnected" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <ListView
-        android:id="@+id/ExamListView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -101,9 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="296dp"
-        android:layout_marginEnd="13dp"
         android:text="@string/exam_code"
-        app:layout_constraintEnd_toStartOf="@+id/editText2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -127,17 +82,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="177dp"
-        android:layout_height="34dp"
-        android:ems="10"
-        android:hint="Enter A Test Code"
-        android:inputType="text|numberDecimal"
-        android:textSize="10sp"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="289dp" />
-
     <Button
         android:id="@+id/button4"
         style="@style/Widget.AppCompat.Button.Borderless"
@@ -155,19 +99,19 @@
         android:id="@+id/editText3"
         android:layout_width="177dp"
         android:layout_height="34dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="Enter A Test Title"
         android:inputType="textPersonName"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/editText2"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintStart_toStartOf="@+id/spinner4"
+        app:layout_constraintTop_toBottomOf="@+id/spinner4" />
 
     <Spinner
         android:id="@+id/spinner2"
         android:layout_width="177dp"
         android:layout_height="24dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="@+id/editText3"
         app:layout_constraintTop_toBottomOf="@+id/editText3" />
 
@@ -175,10 +119,29 @@
         android:id="@+id/spinner3"
         android:layout_width="177dp"
         android:layout_height="24dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="@+id/spinner2"
         app:layout_constraintTop_toBottomOf="@+id/spinner2" />
 
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+    <Spinner
+        android:id="@+id/spinner4"
+        android:layout_width="177dp"
+        android:layout_height="24dp"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="291dp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="176dp"
+        android:text="@string/set_your_test"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
