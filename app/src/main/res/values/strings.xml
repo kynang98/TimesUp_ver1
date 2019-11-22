@@ -85,5 +85,7 @@
     <string name="success_words">Yay! Your answers have been successful submitted, you may leave the hall.</string>
     <string name="timesup">Times Up!</string>
     <string name="timesup_words">Awww... time’s up! No worries your answers have been submitted :)</string>
+    <string name="Error">Opps!</string>
+    <string name="error_words">Opps! We detected that you have walked out/away from the test hall, your answers have been submitted for safekeeping, please contact your lecturer.</string>
 
 </resources>
