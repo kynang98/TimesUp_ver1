@@ -154,7 +154,7 @@ public class Invigilator_Setup_Exam extends AppCompatActivity {
                 duration = durationspinner.getSelectedItem().toString();
 
                 String payload = ExamCode;
-                String topic = "TimesUp/examCode";
+                String topic = "TimesUp_Page/examCode";
                 byte[] encodedPayload;
                 try {
                     encodedPayload = payload.getBytes(StandardCharsets.UTF_8);
