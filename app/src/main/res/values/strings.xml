@@ -80,12 +80,12 @@
     <string name="exam_list_code">Exam code</string>
     <string name="ble_scan_scanning_status">Scan status</string>
     <string name="edit_profile_done">Done</string>
-    <string name="title_activity_ble_gatt">Connected Device</string>
     <string name="success">Success!</string>
     <string name="success_words">Yay! Your answers have been successful submitted, you may leave the hall.</string>
     <string name="timesup">Times Up!</string>
     <string name="timesup_words">Awww... time’s up! No worries your answers have been submitted :)</string>
     <string name="Error">Opps!</string>
     <string name="error_words">Opps! We detected that you have walked out/away from the test hall, your answers have been submitted for safekeeping, please contact your lecturer.</string>
+
 
 </resources>

@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     Button btnSignUp;
     TextView tvSignIn;
     private DatabaseReference firebase;
-    Button bleBtn;
 
     int PERMISSION_REQUEST_CODE = 1;
     String TAG = MainActivity.class.getSimpleName();
@@ -161,8 +160,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //Intent intent = new Intent(MainActivity.this, EditProfile.class);
-        //startActivity(intent);
     }
 
     @Override
