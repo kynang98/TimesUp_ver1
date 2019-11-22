@@ -170,7 +170,13 @@ public class Invigilator_Setup_Exam extends AppCompatActivity {
                 i.putExtra("code", ExamCode);
                 i.putExtra("title", ExamName);
                 i.putExtra("duration", duration);
-                startActivity(i);
+
+                Intent j = new Intent(Invigilator_Setup_Exam.this, LecturerLobby.class);
+                j.putExtra("time", time);
+                j.putExtra("code", ExamCode);
+                j.putExtra("title", ExamName);
+                j.putExtra("duration", duration);
+                startActivity(j);
             }
         });
 
