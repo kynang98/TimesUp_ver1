@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class Invigilator_Home extends AppCompatActivity {
+
+
     StorageReference sRef;
     ImageView img;
     @Override
@@ -27,6 +29,10 @@ public class Invigilator_Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invigilator_home);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+
+        Intent i = getIntent();
+        Bundle b = i.getExtras();
+        User user = (User) b.getSerializable("object");
 
         FloatingActionButton setupFloatActBtn;
         setupFloatActBtn = findViewById(R.id.setupFloatActBtn);

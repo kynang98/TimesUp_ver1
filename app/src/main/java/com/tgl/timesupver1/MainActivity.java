@@ -25,8 +25,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -41,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     EditText emailID, password;
     Button btnSignUp;
     TextView tvSignIn;
-    FirebaseAuth mFirebaseAuth;
+    private DatabaseReference firebase;
     Button bleBtn;
 
     int PERMISSION_REQUEST_CODE = 1;
@@ -52,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
         emailID = findViewById(R.id.signup_email);
         password = findViewById(R.id.signup_pw);
         btnSignUp = findViewById(R.id.signup_signup);
@@ -87,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String email = emailID.getText().toString();
-                String pwd = password.getText().toString();
+                final String email = emailID.getText().toString();
+                final String pwd = password.getText().toString();
                 if(email.isEmpty()){
                     emailID.setError("Please enter Email");
                     emailID.requestFocus();
@@ -97,22 +100,50 @@ public class MainActivity extends AppCompatActivity {
                     password.setError("Please enter password");
                     password.requestFocus();
                 }
-                else if(email.isEmpty() && pwd.isEmpty()){
-                    Toast.makeText(MainActivity.this, "Fields are empty!", Toast.LENGTH_SHORT).show();
-                }
                 else if(!(email.isEmpty()) && !(pwd.isEmpty())){
-                    mFirebaseAuth.signInWithEmailAndPassword(email, pwd);
-                    mFirebaseAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                    firebase = FirebaseDatabase.getInstance().getReference("Users/Students");
+                    firebase.orderByChild("email").equalTo(email).addValueEventListener(new ValueEventListener() {
                         @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(!task.isSuccessful()){
-                                Toast.makeText(MainActivity.this, "Sign Up unsuccessful! Please try again.", Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                                startActivity(new Intent(MainActivity.this, Invigilator_Home.class));
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.exists()) {
+                                for(DataSnapshot data: dataSnapshot.getChildren()) {
+                                    User user = data.getValue(User.class);
+                                    String ID = data.getKey();
+                                    user.setFirebaseID(ID);
+                                    String pass = data.child("password").getValue(String.class);
+                                    if (pass.isEmpty()) {
+                                        Toast.makeText(MainActivity.this, "Unable to read", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        if (pass.equals(pwd)) {
+                                            Intent i = new Intent(MainActivity.this, Candidate_Home.class);
+                                            i.putExtra("object", user);
+                                            startActivity(i);
+                                        } else {
+                                            Toast.makeText(MainActivity.this, "Wrong password, please try again.", Toast.LENGTH_SHORT).show();
+                                            password.setText("");
+                                        }
+                                    }
+                                }
+                            }else{
+                                //firebase.child("")
+                                Toast.makeText(MainActivity.this, "No such record, creating new account", Toast.LENGTH_SHORT).show();
+                                String ID = firebase.push().getKey();
+                                User user = new User("DEFAULT", email, pwd, "Asia Pacific University");
+                                user.setFirebaseID(ID);
+                                firebase.child(ID).setValue(user);
+                                Intent i = new Intent(MainActivity.this, Candidate_Home.class);
+                                i.putExtra("object", user);
+                                startActivity(i);
                             }
                         }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+
                     });
+
                 }
                 else{
                     Toast.makeText(MainActivity.this, "Unexpected error occurred, please restart your application.", Toast.LENGTH_SHORT).show();

@@ -9,11 +9,16 @@ import android.view.View;
 import android.widget.Button;
 
 public class Candidate_Home extends AppCompatActivity {
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_candidate__home);
+
+        Intent i = getIntent();
+        Bundle b = i.getExtras();
+        user = (User) b.getSerializable("object");
 
         Button btn_viewResult = findViewById(R.id.btn_viewResult);
         btn_viewResult.setText("View Result");
@@ -29,14 +34,15 @@ public class Candidate_Home extends AppCompatActivity {
         btn_connectExam.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                openNextActivity(null); // Open Connect Exam Page
+                openNextActivity(new Candidate_Connect_Hall());
             }
         });
     }
 
     public void openNextActivity(Activity page){
 
-        Intent redirect = new Intent(this, page.getClass());
-        startActivity(redirect);
+        Intent i = new Intent(Candidate_Home.this, page.getClass());
+        i.putExtra("object", user);
+        startActivity(i);
     }
 }
